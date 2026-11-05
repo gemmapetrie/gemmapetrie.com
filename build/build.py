@@ -71,7 +71,7 @@ recipes = build_items('recipes')
 print(f'downloading {len(wanted)} images…')
 failed = store.fetch_all()
 print('failed:', len(failed))
-keep = set(wanted.values()) | {'portrait.jpg','favicon.png','favicon.svg'}
+keep = set(wanted.values()) | {'portrait.jpg','favicon.png','favicon.svg','og.jpg'}
 for f in os.listdir(IMG_DIR):
     if f not in keep: os.remove(os.path.join(IMG_DIR, f))
 
