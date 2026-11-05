@@ -1,0 +1,80 @@
+[
+  {
+    "title": "UK CMA and Consumer Choice",
+    "publication": "Mozilla",
+    "date": "2026-10",
+    "url": "https://blog.mozilla.org/en/mozilla/internet-policy/uk-cma-browser-choice-screens/"
+  },
+  {
+    "title": "Rewilding the Walled Garden",
+    "publication": "MozFest",
+    "date": "2026-09",
+    "url": "https://gemmapetrie.github.io/rewilding-the-walled-garden/"
+  },
+  {
+    "title": "Over the Edge 2.0: Do Microsoft’s Design Tactics Still Compromise Free Browser Choice?",
+    "publication": "Mozilla",
+    "date": "2026-07",
+    "url": "https://research.mozilla.org/browser-competition/over-the-edge-2/"
+  },
+  {
+    "title": "Active Choice Interventions at Scale: Browser Defaults Under the Digital Markets Act",
+    "publication": "NBER Working Paper",
+    "date": "2026-04",
+    "url": "https://www.nber.org/papers/w35112"
+  },
+  {
+    "title": "“Easy” Default Browser Settings on iOS and Windows",
+    "publication": "Mozilla",
+    "date": "2025-10",
+    "url": "https://research.mozilla.org/easy-default-browser-settings-arent-always-easy/"
+  },
+  {
+    "title": "Designing Better Digital Competition Remedies: Lessons from User Research",
+    "publication": "Mozilla",
+    "date": "2025-07",
+    "url": "https://research.mozilla.org/competition-remedies-are-too-important-to-be-left-untested/"
+  },
+  {
+    "title": "Over the Edge: The Use of Design Tactics to Undermine Browser Choice",
+    "publication": "Mozilla",
+    "date": "2024-01",
+    "url": "https://research.mozilla.org/browser-competition/over-the-edge-the-use-of-design-tactics-to-undermine-browser-choice/"
+  },
+  {
+    "title": "Can Browser Choice Screens Be Effective? Experimental Analysis of the Impact of Their Design, Content and Placement",
+    "publication": "Mozilla",
+    "date": "2023-09",
+    "url": "https://research.mozilla.org/browser-competition/choicescreen"
+  },
+  {
+    "title": "Beyond Choice Screens: Exploring Browser Choice Design Interventions",
+    "publication": "Mozilla",
+    "date": "2023-09",
+    "url": "https://research.mozilla.org/browser-competition/remedyconcepts"
+  },
+  {
+    "title": "Five Walled Gardens: Why Browsers Are Essential to the Internet and How Operating Systems Are Holding Them Back",
+    "publication": "Mozilla",
+    "date": "2022-09",
+    "url": "https://research.mozilla.org/browser-competition/5wg/"
+  },
+  {
+    "title": "“This Browser Is Lightning Fast”: The Effects of Message Content on Perceived Performance",
+    "publication": "arXiv",
+    "date": "2021-03",
+    "url": "https://arxiv.org/abs/2103.06181"
+  },
+  {
+    "title": "Who Gets to Define Success? Listening to Stories of How People Value Firefox to Redefine Metrics and Revive a Decommissioned Product",
+    "publication": "Ethnographic Praxis in Industry Conference",
+    "date": "2020",
+    "url": "https://doi.org/10.1111/epic.12003"
+  },
+  {
+    "title": "Will Automatically Importing User Data Help Overcome the Blank Slate Problem?",
+    "publication": "CHI Conference on Human Factors in Computing Systems",
+    "date": "2018-04",
+    "url": "https://doi.org/10.1145/3170427.3188542"
+  }
+]

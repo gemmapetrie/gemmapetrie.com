@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gemmapetrie.com/sitemap.xml

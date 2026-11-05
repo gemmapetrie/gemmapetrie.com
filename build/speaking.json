@@ -1,0 +1,81 @@
+[
+  {
+    "title": "Deceptive Design & the Future of Browser Choice",
+    "publication": "How Challengers Thrive: Mozilla Meetup, Washington, D.C.",
+    "date": "2026-07",
+    "url": "",
+    "organizer": "Mozilla and Internet Works"
+  },
+  {
+    "title": "Enabling User Choice: The Role of Interface Design Under Article 6(3) of the DMA",
+    "publication": "Digital Markets Act Enforcement: Impact and Next Steps",
+    "date": "2025-11",
+    "url": "https://www.article19.org/wp-content/uploads/2025/11/DMA-DIGITAL-FINAL-2025.pdf",
+    "organizer": "ARTICLE 19"
+  },
+  {
+    "title": "Designing Better Digital Competition Remedies: Lessons from User Research",
+    "publication": "DMA and Beyond Conference",
+    "date": "2025-02",
+    "url": "https://kgi.georgetown.edu/events/dma-and-beyond-conference/",
+    "organizer": "Knight-Georgetown Institute and Yale Tobin Center"
+  },
+  {
+    "title": "Remedies & Browser Choice",
+    "publication": "RemedyFest 2024",
+    "date": "2024-02",
+    "url": "https://www.ycombinator.com/blog/content/files/2024/06/RemedyFest-Final-Report.pdf",
+    "organizer": "Y Combinator and Bloomberg Beta"
+  },
+  {
+    "title": "Panel on Design Fiction and Constructive Friction in Generative AI",
+    "publication": "Speculative Friction",
+    "date": "2024-01",
+    "url": "https://speculativefriction.org/events"
+  },
+  {
+    "title": "Circumvention by Design: Deceptive Design Patterns in the Regulatory Context",
+    "publication": "MozFest 2023",
+    "date": "2023-03",
+    "url": "https://www.mozillafestival.org/"
+  },
+  {
+    "title": "Who Gets to Define Success? Listening to Stories of How People Value Firefox to Redefine Metrics and Revive a Decommissioned Product",
+    "publication": "EPIC 2020",
+    "date": "2020-10",
+    "url": "https://2020.epicpeople.org/",
+    "organizer": "Ethnographic Praxis in Industry"
+  },
+  {
+    "title": "Measuring User Perceived Performance to Prioritize Product Work",
+    "publication": "PerfMatters Conference",
+    "date": "2019-04",
+    "url": "https://www.youtube.com/watch?v=tah_hbOc86w"
+  },
+  {
+    "title": "Using Interviews in Design Research",
+    "publication": "LACONI Continuing Education",
+    "date": "2016-01",
+    "url": "",
+    "organizer": "Skokie Library"
+  },
+  {
+    "title": "User Experience Research Workshop",
+    "publication": "Library UX Chicago",
+    "date": "2015-07",
+    "url": "http://www.meetup.com/Library-UX-Chicago/events/223791887/",
+    "organizer": "UIC Daley Library"
+  },
+  {
+    "title": "Designing for Our Users, Not for Ourselves",
+    "publication": "Mozilla Summit, Brussels",
+    "date": "2013-10",
+    "url": "https://blog.mozilla.org/ux/2013/10/mozilla-summit-2013-designing-for-our-users-not-for-ourselves/"
+  },
+  {
+    "title": "Keeping the Focus on “Why?”: Strategies to Make Room for User Research in Any Design Process",
+    "publication": "UX Mad, Madison",
+    "date": "2013-07",
+    "url": ""
+  }
+]

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User Perceived Performance: Measuring Perceived Performance to Prioritize Product Work · Gemma Petrie</title>
+<meta name="description" content="This post is adapted from a talk delivered by Heather McGaw and Gemma Petrie at the PerfMatters Conference in 2019. The Challenge of Perceived Performance When…">
+<link rel="icon" type="image/svg+xml" href="../images/favicon.svg"><link rel="icon" type="image/png" href="../images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://gemmapetrie.com/writing/user-perceived-performance-measuring-perceived-performance-to-prioritize-product-work.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gemma Petrie">
+<meta property="og:title" content="User Perceived Performance: Measuring Perceived Performance to Prioritize Product Work · Gemma Petrie">
+<meta property="og:description" content="This post is adapted from a talk delivered by Heather McGaw and Gemma Petrie at the PerfMatters Conference in 2019. The Challenge of Perceived Performance When…">
+<meta property="og:url" content="https://gemmapetrie.com/writing/user-perceived-performance-measuring-perceived-performance-to-prioritize-product-work.html">
+<meta property="og:image" content="https://gemmapetrie.com/images/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="">
+<a class="skip" href="#content">Skip to content</a>
+<header class="wrap top">
+  <a class="brand" href="../index.html">Gemma Petrie</a>
+  <nav aria-label="Main"><a href="../publications.html">Publications</a><a href="../speaking.html">Speaking</a><a href="../writing/index.html" aria-current="page">Writing</a><a href="../recipes/index.html">Recipes</a><a href="../about.html">About</a></nav>
+  <a class="cta" href="#contact" data-u="gemmapetrie" data-d="gmail.com">Get in touch</a>
+</header>
+<main id="content" class="wrap" tabindex="-1">
+
+<article class="prose post">
+  <p class="back"><a href="index.html">← Back</a></p>
+  <h1>User Perceived Performance: Measuring Perceived Performance to Prioritize Product Work</h1>
+  <p class="meta"><time datetime="2019-04-01">April 1, 2019</time></p>
+  
+  
+  <p><em>This post is adapted from a talk delivered by Heather McGaw and Gemma Petrie at the </em><a href="https://2019.perfmattersconf.com/"><em>PerfMatters Conference</em></a><em> in 2019.</em></p>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+    
+
+    
+
+    
+      <figure>
+        
+      
+        
+          
+      
+        
+          
+          
+          
+          
+          
+          
+          <img src="../images/86e4ab878fbf.jpg" alt="" loading="lazy">
+        
+      
+    
+        
+      
+
+      
+    
+      </figure>
+    
+
+    
+
+
+  
+
+  
+
+
+  
+  <h2>The Challenge of Perceived Performance</h2><p>When discussing software performance, engineers typically focus on objective measurements: page load times, resource usage, and response latency. But there's another critical dimension to performance that's often overlooked: how fast does the software <em>feel</em> to the user?</p><p>At Mozilla, we've discovered that perceived performance—how quickly software appears to perform a given task—is just as important as actual performance metrics for delivering a great user experience. This insight led us to develop a structured approach to measuring and improving perceived performance for Firefox across our desktop and mobile browsers.</p><h2>The Mozilla Engineering Legacy</h2><p>Mozilla has a rich engineering history dating back to 1998 when the Netscape browser suite source code was released. The organization was founded to "harness the creative power of thousands of programmers on the Internet and fuel unprecedented levels of innovation in the browser market."</p>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+    
+
+    
+
+    
+      <figure>
+        
+      
+        
+          
+      
+        
+          
+          
+          
+          
+          
+          
+          <img src="../images/d33ecf4c8e1a.jpg" alt="" loading="lazy">
+        
+      
+    
+        
+      
+
+      
+    
+      </figure>
+    
+
+    
+
+
+  
+
+  
+
+
+  
+  <p>While Firefox remains engineering-focused, we've grown our UX and Product organizations significantly in recent years. This evolution set the stage for our work on Firefox Quantum in 2017—a major desktop browser update that included numerous improvements to the Gecko browser engine and a substantial visual refresh, all aimed at making Firefox feel noticeably faster.</p><h2>Defining Perceived Performance</h2><p>Before we could meaningfully measure perceived performance, we needed to clearly define what it means. Drawing from academic research and our Firefox Photon Design System, we identified four key factors that determine perceived performance:</p><ol><li><p><strong>Duration</strong>: The actual time a process takes. This is what engineers traditionally measure as "performance."</p></li><li><p><strong>Responsiveness</strong>: The perceived time it takes the system to respond to user input. For example, an empty dialog appearing immediately after a click and then taking a second to populate feels faster than a dialog appearing with a one-second delay fully populated.</p></li><li><p><strong>Fluency</strong>: The perceived smoothness of a process—how hard the machine appears to be working. A stuttering progress indicator gives the impression of lower performance regardless of the actual task duration.</p></li><li><p><strong>Tolerance</strong>: How long users expect a process to take and at what point they will abandon it. For instance, users have a much higher tolerance for loading a web page than for saving a bookmark.</p></li></ol><p>We also discovered that users perceive time differently depending on whether they're actively engaged (active time) or passively waiting (passive time). Time passes more quickly when users are mentally engaged in a task versus when they're simply waiting.</p><h2>Our Research Approach</h2><p>With this understanding, we developed a structured approach to measure perceived performance across our products. Here's how we did it:</p><h3>1. Identify stakeholders and set clear goals</h3><p>We started by gathering cross-functional teams including product managers, engineering managers, and project managers. Together, we defined specific goals:</p><ul><li><p>Identify the greatest areas for improvement in perceived performance</p></li><li><p>Evaluate progress over time</p></li><li><p>Develop a consistent measurement framework</p></li></ul><h3>2. Benchmark against competitors</h3><p>We conducted initial benchmarking studies comparing Firefox with Chrome, using:</p><ul><li><p>Unbranded browser builds to eliminate brand bias</p></li><li><p>A mix of browser-specific tasks (opening new tabs, windows) and site-specific tasks (menu interactions, loading content, scrolling)</p></li><li><p>Controlled environments with consistent devices and tasks</p></li><li><p>Randomized task orders to eliminate sequence bias</p></li></ul><p>For our mobile studies, we tested on both high-performance/high-bandwidth and low-performance/low-bandwidth devices to understand performance perceptions across different user environments.</p><h3>3. Collect qualitative and quantitative data</h3><p>Our research sessions included:</p><ul><li><p>Individual interviews with 40+ participants</p></li><li><p>7-point rating scales for speed perception on various tasks</p></li><li><p>Overall preference selections</p></li><li><p>Qualitative feedback on specific experiences</p></li></ul><h3>4. Analyze results and prioritize improvements</h3><p>After identifying performance perception gaps, we worked with design and engineering teams to prioritize improvements. For example, on desktop we learned:</p><ul><li><p>Firefox's "Close Tabs" dialog was perceived as a useful security feature worth preserving</p></li><li><p>Scrolling on Facebook felt "glitchy" and needed improvement</p></li><li><p>Loading graphics and JavaScript interactions were perceived as slow on certain sites</p></li></ul><p>For mobile, we discovered that performance differences were much more noticeable on low-bandwidth connections, helping us focus optimization efforts where they would have the most significant impact.</p><h2>Impact and Results</h2><p>Our perceived performance research directly influenced product decisions across Firefox:</p><ol><li><p><strong>Feature preservation</strong>: We kept features like the "Close Tabs" dialog which users valued for offering a sense of security, even though it technically added a step to browser operation.</p></li><li><p><strong>Engineering focus</strong>: We targeted specific pain points like scrolling performance on Android, with multiple bugs filed and fixed based on our research.</p></li><li><p><strong>Design decisions</strong>: Interface elements were modified to better suggest speed and responsiveness.</p></li><li><p><strong>Product evolution</strong>: Successive Firefox releases showed measurable improvements in perceived performance, with Firefox 57 (Quantum) closing the performance perception gap with Chrome.</p></li></ol><p>Perhaps most importantly, the research led to a cultural shift in how Mozilla approaches performance. Today, "user perceived performance" is a standard term in our product development process, and we've dedicated resources including a Product Manager specifically focused on perceived performance.</p><h2>Key Lessons for Your Organization</h2><p>If you're looking to implement similar research in your organization, here are the key takeaways:</p><ol><li><p><strong>Perceived performance matters as much as actual performance</strong> for user satisfaction and retention.</p></li><li><p><strong>Cross-functional collaboration is essential</strong>—involve engineering, product, and UX teams from the beginning.</p></li><li><p><strong>Control for important factors</strong> such as devices, bandwidth, task order, and branding to get reliable results.</p></li><li><p><strong>Establish benchmarks</strong> against competitors and against your own previous versions.</p></li><li><p><strong>Run studies regularly</strong> to track improvements and identify new opportunities.</p></li><li><p><strong>Share the results broadly</strong> to build organizational awareness of the importance of perceived performance.</p></li></ol><p>By bringing user perceptions into your performance optimization process, you can ensure that engineering improvements translate directly into enhanced user experiences, driving satisfaction and loyalty for your products.</p><p><a href="https://www.youtube.com/watch?v=tah_hbOc86w"><strong>You can view our talk below:</strong></a></p>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+    
+    
+      
+        
+        
+        
+        
+          <div class="embed"><iframe src="https://www.youtube.com/embed/tah_hbOc86w?si=DLXt3OPm9XC-sbA4" loading="lazy" allowfullscreen></iframe></div>
+        
+        
+        
+      
+    
+  
+  
+    
+
+
+
+  
+
+
+
+  
+
+
+
+</article>
+</main>
+<footer class="site-footer"><div class="wrap"><span>© Gemma Petrie<noscript> · gemmapetrie [at] gmail [dot] com</noscript></span><nav aria-label="Footer"><a href="https://www.linkedin.com/in/gemmapetrie/">LinkedIn</a><a href="#contact" data-u="gemmapetrie" data-d="gmail.com">Email</a></nav></div></footer>
+<script>document.querySelectorAll("a[data-u]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();location.href="mail"+"to:"+a.dataset.u+"@"+a.dataset.d;});});</script>
+</body>
+</html>
