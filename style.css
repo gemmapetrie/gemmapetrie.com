@@ -263,3 +263,8 @@ main:focus { outline: none; }
 .post > p, .post > ul, .post > ol, .post > h2, .post > h3, .post > h4, .post > blockquote, .post > pre { max-width: none; }
 .post img { max-width: 100%; }
 .post img { margin-left: auto; margin-right: auto; }
+
+/* two portrait photos side by side */
+.post p.pair{display:flex;gap:1rem;justify-content:center;align-items:flex-start;margin:1.5rem 0}
+.post p.pair > a, .post p.pair > img{flex:1 1 0;min-width:0;display:block}
+.post p.pair img{width:100%;max-width:100%;max-height:none;height:auto;margin:0}

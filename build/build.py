@@ -133,9 +133,31 @@ def page(title, body, root='', current='', desc='', extra_class=''):
 '''
     return finish(out, root)
 
+def _jpeg_size(p):
+    import struct
+    d = open(p, 'rb').read(); i = 2
+    while i < len(d):
+        if d[i] != 0xFF: i += 1; continue
+        if d[i+1] in (0xC0, 0xC1, 0xC2): h, w = struct.unpack('>HH', d[i+5:i+9]); return w, h
+        i += 2 + struct.unpack('>H', d[i+2:i+4])[0]
+    return 0, 0
+
+def pair_portraits(content, path):
+    """A paragraph holding only two portrait photos becomes a side-by-side pair."""
+    up = '../' * path.count('/')
+    def repl(m):
+        body = m.group(1)
+        srcs = re.findall(r'<img src="' + re.escape(up) + r'(images/[^"]+)"', body)
+        if len(srcs) != 2 or re.sub(r'<a [^>]*>|</a>|<img[^>]*>|\s|<br>', '', body): return m.group(0)
+        try: sizes = [_jpeg_size(os.path.join(ROOT, s)) for s in srcs]
+        except OSError: return m.group(0)
+        return f'<p class="pair">{body}</p>' if all(h > w for w, h in sizes) else m.group(0)
+    return re.sub(r'<p>(.*?)</p>', repl, content, flags=re.S)
+
 def write(path, content):
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
+    content = pair_portraits(content, path)
     if '<link rel="stylesheet"' in content and '<meta name="robots" content="noindex">' not in content:
         url = DOMAIN + ('' if path == 'index.html' else path)
         t = re.search(r'<title>(.*?)</title>', content).group(1)
