@@ -174,6 +174,23 @@ def write(path, content):
 def fmt(d): return d.strftime('%B %-d, %Y')
 
 # home
+# home: "Selected work" strip (links come from publications.json)
+_pubs = json.load(open(os.path.join(ROOT, 'build', 'publications.json')))
+_url = lambda prefix: next(x['url'] for x in _pubs if x['title'].startswith(prefix))
+SELECTED = [
+    ('Active Choice Interventions', '2026 · NBER Working Paper', 'Active Choice Interventions at Scale',
+     'After the DMA choice-screen mandate, Firefox daily active users rose 91% on iOS and 13% on Android relative to a no-mandate counterfactual.'),
+    ('Designing Better Digital Competition Remedies', '2025 · Mozilla', 'Designing Better Digital Competition Remedies',
+     'Case studies from Mozilla’s competition research on how concept testing, usability testing and behavioral experiments can strengthen the design of regulatory remedies.'),
+    ('Can Browser Choice Screens Be Effective', '2023 · Mozilla', 'Can Browser Choice Screens Be Effective?',
+     'A 12,000-person experiment in Germany, Spain and Poland showing that a choice screen’s design, content and timing shape how well it works.'),
+    ('Who Gets to Define Success', '2020 · Ethnographic Praxis in Industry', 'Who Gets to Define Success?',
+     'Diary studies, interviews and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
+]
+selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">All publications</a></div><div class="sw-grid">'
+    + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><span class="sw-meta">{m}</span><h3>{t}</h3><p>{d}</p></a>' for k, m, t, d in SELECTED)
+    + '</div></section>')
+
 write('index.html', page('', f'''
 <section class="hero">
   <h1>I <span class="u">research</span> how design and platform conditions shape people’s choices and experiences with technology.</h1>
@@ -182,7 +199,8 @@ write('index.html', page('', f'''
 <section class="bio">
   <p>I’m Gemma Petrie (she/her), a Principal Researcher in Chicago, exploring the intersection of people, society, and technology. My work focuses on understanding how technology and design impact people’s lives and how research can inform policy and regulation.</p>
   <p>I lead competition and regulation research for <a class="m" href="https://research.mozilla.org/browser-competition/">Mozilla</a>. Previously, I led the <a class="m" href="https://www.firefox.com/">Firefox</a> User Research Team.</p>
-</section>''', extra_class='home'))
+</section>
+{selected_html}''', extra_class='home'))
 
 # about
 write('about.html', page('About', f'''
