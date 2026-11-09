@@ -221,7 +221,6 @@ if CONTACT_ENDPOINT:
     <button type="submit">Send</button>
     <p id="cstatus" role="status" aria-live="polite"></p>
   </form>
-  <noscript><p>JavaScript is needed to send from this page. You can also email {EMAIL.replace("@", " [at] ").replace(".", " [dot] ")}.</p></noscript>
 </section>
 <script>
 document.getElementById("cform").addEventListener("submit", function (e) {{

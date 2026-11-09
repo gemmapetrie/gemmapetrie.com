@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Gemma Petrie</title>
+<meta name="description" content="Contact Gemma Petrie">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg"><link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://gemmapetrie.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gemma Petrie">
+<meta property="og:title" content="Contact · Gemma Petrie">
+<meta property="og:description" content="Contact Gemma Petrie">
+<meta property="og:url" content="https://gemmapetrie.com/contact.html">
+<meta property="og:image" content="https://gemmapetrie.com/images/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="">
+<a class="skip" href="#content">Skip to content</a>
+<header class="wrap top">
+  <a class="brand" href="index.html">Gemma Petrie</a>
+  <nav aria-label="Main"><a href="publications.html">Publications</a><a href="speaking.html">Speaking</a><a href="writing/index.html">Writing</a><a href="recipes/index.html">Recipes</a><a href="about.html">About</a><a href="contact.html" aria-current="page">Contact</a></nav>
+</header>
+<main id="content" class="wrap" tabindex="-1">
+<section class="prose contact">
+  <h1>Contact</h1>
+  <p class="sub">Send a message and it goes to my email.</p>
+  <form id="cform" action="https://formspree.io/f/mljjqeqv" method="POST" class="cform">
+    <label>Name<input name="name" type="text" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Message<textarea name="message" rows="7" required></textarea></label>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+    <button type="submit">Send</button>
+    <p id="cstatus" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<script>
+document.getElementById("cform").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var f = e.target, s = document.getElementById("cstatus"), b = f.querySelector("button");
+  b.disabled = true; s.textContent = "Sending…";
+  fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } })
+    .then(function (r) { if (!r.ok) throw 0; f.reset(); s.textContent = "Thanks. Your message was sent."; })
+    .catch(function () { s.textContent = "Something went wrong. Please try again."; })
+    .then(function () { b.disabled = false; });
+});
+</script>
+</main>
+<footer class="site-footer"><div class="wrap"><span>© Gemma Petrie<noscript> · gemmapetrie [at] gmail [dot] com</noscript></span><nav aria-label="Footer"><a href="https://www.linkedin.com/in/gemmapetrie/">LinkedIn</a><a href="contact.html">Contact</a></nav></div></footer>
+<script>document.querySelectorAll("a[data-u]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();location.href="mail"+"to:"+a.dataset.u+"@"+a.dataset.d;});});</script>
+</body>
+</html>
