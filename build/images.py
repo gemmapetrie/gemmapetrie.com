@@ -24,8 +24,17 @@ def flickr_index():
                     if m: _flickr_index.setdefault(m.group(1), os.path.join(dp, f))
     return _flickr_index
 
-def to_jpeg(src, dest):
-    subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', '78', '-Z', '1200', src, '--out', dest],
+def jpeg_size(p):
+    import struct
+    d = open(p, 'rb').read(); i = 2
+    while i < len(d):
+        if d[i] != 0xFF: i += 1; continue
+        if d[i+1] in (0xC0, 0xC1, 0xC2): h, w = struct.unpack('>HH', d[i+5:i+9]); return w, h
+        i += 2 + struct.unpack('>H', d[i+2:i+4])[0]
+    return 0, 0
+
+def to_jpeg(src, dest, size=1200, quality=78):
+    subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', str(quality), '-Z', str(size), src, '--out', dest],
                    check=True, capture_output=True)
 
 def normalize_url(src):
@@ -41,8 +50,9 @@ def flickr_id(url):
     return m.group(1) if m else None
 
 class ImageStore:
-    def __init__(self, cache_dir):
+    def __init__(self, cache_dir, flickr_size=1200, flickr_quality=78):
         self.dir = cache_dir
+        self.flickr_size, self.flickr_quality = flickr_size, flickr_quality
         os.makedirs(cache_dir, exist_ok=True)
         self.wanted = {}   # url -> filename
         self.failed = set()  # filenames
@@ -83,7 +93,7 @@ class ImageStore:
         fid = flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None
         src = flickr_index().get(fid) if fid else None
         if src:
-            to_jpeg(src, path); return url, True
+            to_jpeg(src, path, self.flickr_size, self.flickr_quality); return url, True
         data = self._fetch_bytes(url)
         if not data: return url, False
         tmp = path + '.tmp'
@@ -95,6 +105,17 @@ class ImageStore:
         finally:
             if os.path.exists(tmp): os.remove(tmp)
         return url, True
+
+    def refresh_flickr(self):
+        """Re-make photos that have a Flickr original but were saved smaller than the current setting."""
+        n = 0
+        for url, name in self.wanted.items():
+            path = os.path.join(self.dir, name)
+            fid = flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None
+            src = flickr_index().get(fid) if fid else None
+            if src and os.path.exists(path) and max(jpeg_size(path)) < self.flickr_size:
+                os.remove(path); n += 1
+        return n
 
     def fetch_all(self):
         with ThreadPoolExecutor(8) as ex:

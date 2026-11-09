@@ -23,7 +23,7 @@ ABOUT_IMG = 'https://images.squarespace-cdn.com/content/v1/5fe0fbec379c5c56f0c80
 
 # ---------- images ----------
 from images import ImageStore, normalize_url as local_name
-store = ImageStore(IMG_DIR)
+store = ImageStore(IMG_DIR, flickr_size=1600, flickr_quality=84)
 wanted = store.wanted
 
 def register(src):
@@ -68,6 +68,7 @@ def build_items(kind):
 posts = build_items('blog')
 recipes = build_items('recipes')
 
+print('upgraded from Flickr originals:', store.refresh_flickr())
 print(f'downloading {len(wanted)} images…')
 failed = store.fetch_all()
 print('failed:', len(failed))
