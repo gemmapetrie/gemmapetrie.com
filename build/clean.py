@@ -22,6 +22,10 @@ class Cleaner(HTMLParser):
         if tag=='img':
             src=a.get('data-src') or a.get('src') or ''
             if not src: return
+            m=re.match(r'(\d{9,11})_[0-9a-f]{8,12}$', (a.get('alt') or '').strip())
+            if m:
+                from images import ALT_FLICKR, normalize_url
+                ALT_FLICKR[normalize_url(src)]=m.group(1)
             new=self.on_img(src)
             alt=html.escape(a.get('alt') or '',quote=True)
             self.out.append(f'<img src="{new}" alt="{alt}" loading="lazy">'); return

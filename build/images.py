@@ -12,6 +12,7 @@ FLICKR_DIR = os.environ.get('FLICKR_DIR', '/Users/gpetrie/Dropbox/Photos/Flickr'
 UA = {'User-Agent': 'Mozilla/5.0'}
 _wayback_lock = threading.Lock()
 
+ALT_FLICKR = {}  # normalized image url -> Flickr photo id, taken from the img alt text (e.g. alt="6254757801_ae6f4be75f")
 _flickr_index = None
 def flickr_index():
     global _flickr_index
@@ -90,7 +91,7 @@ class ImageStore:
     def _fetch(self, url):
         path = os.path.join(self.dir, self.wanted[url])
         if os.path.exists(path) and os.path.getsize(path) > 0: return url, True
-        fid = flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None
+        fid = ALT_FLICKR.get(url) or (flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None)
         src = flickr_index().get(fid) if fid else None
         if src:
             to_jpeg(src, path, self.flickr_size, self.flickr_quality); return url, True
@@ -111,7 +112,7 @@ class ImageStore:
         n = 0
         for url, name in self.wanted.items():
             path = os.path.join(self.dir, name)
-            fid = flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None
+            fid = ALT_FLICKR.get(url) or (flickr_id(url) if ('flickr.com' in url or 'wordpress.com' in url) else None)
             src = flickr_index().get(fid) if fid else None
             if src and os.path.exists(path) and max(jpeg_size(path)) < self.flickr_size:
                 os.remove(path); n += 1
