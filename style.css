@@ -317,3 +317,5 @@ main:focus { outline: none; }
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'%3E%3Cpath d='M0 5.00 L2 5.62 L4 6.22 L6 6.76 L8 7.23 L10 7.60 L12 7.85 L14 7.98 L16 7.98 L18 7.85 L20 7.60 L22 7.23 L24 6.76 L26 6.22 L28 5.62 L30 5.00 L32 4.38 L34 3.78 L36 3.24 L38 2.77 L40 2.40 L42 2.15 L44 2.02 L46 2.02 L48 2.15 L50 2.40 L52 2.77 L54 3.24 L56 3.78 L58 4.38 L60 5.00' fill='none' stroke='%235b3df5' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") repeat-x 0 50%/60px 10px}
 .list .t a:hover::after,.list a:hover .t::after,.grid a:hover .t::after,.sw-card:hover h3::after,.sw-head a:hover::after,.back a:hover::after,.list .ex a:hover::after{opacity:1}
 .sw-head a:hover,.back a:hover,.list .ex a:hover{color:var(--grape)}
+.post .back a{color:var(--ink)}
+.post .back a:hover{color:var(--grape)}
