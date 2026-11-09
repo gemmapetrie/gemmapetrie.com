@@ -181,11 +181,11 @@ SELECTED = [
     ('Active Choice Interventions', '2026 · NBER Working Paper', 'Active Choice Interventions at Scale',
      'After the DMA choice-screen mandate, Firefox daily active users rose 91% on iOS and 13% on Android relative to a no-mandate counterfactual.'),
     ('Designing Better Digital Competition Remedies', '2025 · Mozilla', 'Designing Better Digital Competition Remedies',
-     'Case studies from Mozilla’s competition research on how concept testing, usability testing and behavioral experiments can strengthen the design of regulatory remedies.'),
+     'Case studies from Mozilla’s competition research on how concept testing, usability testing, and behavioral experiments can strengthen the design of regulatory remedies.'),
     ('Can Browser Choice Screens Be Effective', '2023 · Mozilla', 'Can Browser Choice Screens Be Effective?',
-     'A 12,000-person experiment in Germany, Spain and Poland showing that a choice screen’s design, content and timing shape how well it works.'),
+     'A 12,000-person experiment in Germany, Spain, and Poland showing that a choice screen’s design, content, and timing shape its effectiveness.'),
     ('Who Gets to Define Success', '2020 · Ethnographic Praxis in Industry', 'Who Gets to Define Success?',
-     'Diary studies, interviews and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
+     'Diary studies, interviews, and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
 ]
 selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">All publications</a></div><div class="sw-grid">'
     + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><span class="sw-meta">{m}</span><h3>{t}</h3><p>{d}</p></a>' for k, m, t, d in SELECTED)
@@ -239,8 +239,8 @@ def entries_page(slug, title, intro, link_event=False):
             inner += '</ul>'
     write(f'{slug}.html', page(title, f'<section class="prose wide"><h1>{title}</h1><p class="sub">{intro}</p>{inner}</section>', current=slug))
 
-entries_page('speaking', 'Speaking', 'Selected talks, panels and conference sessions', link_event=True)
-entries_page('publications', 'Publications', 'Selected papers, reports and articles')
+entries_page('speaking', 'Speaking', 'Selected talks, panels, and conference sessions', link_event=True)
+entries_page('publications', 'Publications', 'Selected papers, reports, and articles')
 
 # writing
 cards = ''.join(

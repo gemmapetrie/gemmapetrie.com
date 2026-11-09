@@ -86,7 +86,7 @@ li.hidden=!((!t||li.dataset.q.includes(t))&&(!c||li.dataset.cats.split('|').incl
 document.querySelectorAll('.list').forEach(ul=>{const h=ul.previousElementSibling;const any=[...ul.children].some(l=>!l.hidden);ul.hidden=h.hidden=!any})}
 q.addEventListener('input',f);sel.addEventListener('change',f);</script>'''
 opts = '<option value="">All categories</option>' + ''.join(f'<option>{esc(c)}</option>' for c in cats)
-body = (f'<section class="prose wide"><h1>Archive</h1><p class="sub">{len(entries)} entries · Pro Bono Baker, user research and library writing</p>'
+body = (f'<section class="prose wide"><h1>Archive</h1><p class="sub">{len(entries)} entries · Pro Bono Baker, user research, and library writing</p>'
         f'<div class="a-filters"><input id="q" class="a-search" type="search" placeholder="Search titles and previews"><select id="cat" class="a-cat">{opts}</select></div>{rows}</section>{script}')
 open(os.path.join(OUT, 'index.html'), 'w').write(shell('Archive', body))
 print('wrote', OUT, '|', len(os.listdir(os.path.join(OUT, 'posts'))), 'pages,', len(os.listdir(os.path.join(OUT, 'images'))), 'images')
