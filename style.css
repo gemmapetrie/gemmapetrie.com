@@ -300,8 +300,9 @@ main:focus { outline: none; }
 .cform input:focus,.cform textarea:focus{outline:0;border-bottom-color:var(--grape);background:#ebe8f7}
 .cform textarea{resize:vertical;min-height:9rem}
 .cform button,.cform #cstatus{grid-column:1/-1}
-.cform button{justify-self:start;font:inherit;font-weight:700;border:0;border-radius:99px;padding:.8rem 2rem;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s}
-.cform button:hover{background:var(--grape)}
+.cform button{justify-self:start;margin:.3rem 8px 0 0;font:inherit;font-weight:700;border:0;border-radius:0;padding:.9rem 2rem;background:var(--ink);color:#fff;cursor:pointer;box-shadow:6px 6px 0 var(--grape);transition:transform .15s,box-shadow .15s}
+.cform button:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--grape)}
+.cform button:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--grape)}
 .cform button:disabled{opacity:.6;cursor:default}
 #cstatus{margin:0;color:var(--muted);min-height:1.5em}
 @media(max-width:560px){.cform{grid-template-columns:1fr}.cform label:nth-of-type(3){grid-column:auto}}

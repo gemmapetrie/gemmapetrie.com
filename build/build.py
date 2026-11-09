@@ -215,7 +215,6 @@ write('index.html', page('', f'''
 if CONTACT_ENDPOINT:
     write('contact.html', page('Contact', f'''<section class="prose contact">
   <h1>Contact</h1>
-  <p class="sub">Send a message and it goes to my email.</p>
   <form id="cform" action="{esc(CONTACT_ENDPOINT)}" method="POST" class="cform">
     <label>Name<input name="name" type="text" autocomplete="name" required></label>
     <label>Email<input name="email" type="email" autocomplete="email" required></label>
