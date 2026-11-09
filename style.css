@@ -290,3 +290,30 @@ main:focus { outline: none; }
 .sw{margin-top:var(--gap)}
 .sw-head{padding-top:var(--pad)}
 .home main{padding-bottom:0}
+
+/* contact form */
+.contact{max-width:34rem}
+.cform{display:grid;gap:1.25rem;margin-top:1.75rem}
+.cform label{display:grid;gap:.4rem;font-weight:500}
+.cform input,.cform textarea{font:inherit;font-weight:400;padding:.7rem .8rem;border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:0;width:100%}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--grape);outline-offset:2px}
+.cform textarea{resize:vertical;min-height:9rem}
+.cform button{justify-self:start;font:inherit;font-weight:700;border:2px solid var(--ink);border-radius:99px;padding:.5rem 1.6rem;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.cform button:hover{background:var(--grape);border-color:var(--grape);color:#fff}
+.cform button:disabled{opacity:.6;cursor:default}
+#cstatus{margin:0;color:var(--muted);min-height:1.5em}
+
+/* LINKS: two styles.
+   Navigation links: ink, no underline; hover and current page = purple + squiggle.
+   Inline links (inside sentences): ink text, purple straight underline; hover = purple text. */
+.bio a.m,.prose a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--grape);text-decoration-thickness:2px;text-underline-offset:.2em;background:none}
+.bio a.m:hover,.prose a:hover{color:var(--grape);background:none}
+.prose .list a,.prose .grid a,.prose .sw-card,.prose .back a,.post .back a{text-decoration:none;background:none}
+.prose .list .ex a{color:var(--ink)}
+.list .t a,.grid .t,.sw-card h3,.sw-head a,.back a,.list .ex a{position:relative}
+.grid .t,.sw-card h3{width:fit-content;max-width:100%}
+.list .t a,.sw-head a,.back a,.list .ex a{display:inline-block}
+.list .t a::after,.grid .t::after,.sw-card h3::after,.sw-head a::after,.back a::after,.list .ex a::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:10px;pointer-events:none;opacity:0;transition:opacity .15s;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'%3E%3Cpath d='M0 5.00 L2 5.62 L4 6.22 L6 6.76 L8 7.23 L10 7.60 L12 7.85 L14 7.98 L16 7.98 L18 7.85 L20 7.60 L22 7.23 L24 6.76 L26 6.22 L28 5.62 L30 5.00 L32 4.38 L34 3.78 L36 3.24 L38 2.77 L40 2.40 L42 2.15 L44 2.02 L46 2.02 L48 2.15 L50 2.40 L52 2.77 L54 3.24 L56 3.78 L58 4.38 L60 5.00' fill='none' stroke='%235b3df5' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") repeat-x 0 50%/60px 10px}
+.list .t a:hover::after,.list a:hover .t::after,.grid a:hover .t::after,.sw-card:hover h3::after,.sw-head a:hover::after,.back a:hover::after,.list .ex a:hover::after{opacity:1}
+.sw-head a:hover,.back a:hover,.list .ex a:hover{color:var(--grape)}

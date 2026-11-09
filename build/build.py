@@ -18,6 +18,10 @@ SITE = 'Gemma Petrie'
 DOMAIN = 'https://gemmapetrie.com/'
 PAGES = []
 EMAIL = 'gemmapetrie@gmail.com'
+# Contact form: set by putting the form endpoint URL (a public URL) in build/contact_endpoint.txt.
+# Without it, Contact falls back to a mailto link and no contact page is built.
+_ep = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'contact_endpoint.txt')
+CONTACT_ENDPOINT = open(_ep).read().strip() if os.path.exists(_ep) else ''
 PROFILE_IMG = 'https://images.squarespace-cdn.com/content/v1/5fe0fbec379c5c56f0c80371/1608588010818-VII993KJN9B3AQH5UFS0/L1090151.JPG'
 ABOUT_IMG = 'https://images.squarespace-cdn.com/content/v1/5fe0fbec379c5c56f0c80371/1608587013933-BV1YQM5HI74UJXC5TU2C/2019-04-03+23.40.56-1.jpg'
 
@@ -104,7 +108,9 @@ NAV = [('publications', 'publications.html', 'Publications'), ('speaking', 'spea
 def page(title, body, root='', current='', desc='', extra_class=''):
     cur = ' aria-current="page"'
     nav = ''.join(f'<a href="{root}{href}"{cur if key == current else ""}>{label}</a>' for key, href, label in NAV)
-    nav += f'<a href="mailto:{EMAIL}">Contact</a>'
+    nav += (f'<a href="{root}contact.html"{cur if current == "contact" else ""}>Contact</a>' if CONTACT_ENDPOINT
+            else f'<a href="mailto:{EMAIL}">Contact</a>')
+    foot_contact = (f'<a href="{root}contact.html">Contact</a>' if CONTACT_ENDPOINT else f'<a href="mailto:{EMAIL}">Email</a>')
     full_title = SITE if not title else f'{title} · {SITE}'
     out = f'''<!doctype html>
 <html lang="en">
@@ -127,7 +133,7 @@ def page(title, body, root='', current='', desc='', extra_class=''):
 <main id="content" class="wrap" tabindex="-1">
 {body}
 </main>
-<footer class="site-footer"><div class="wrap"><span>© Gemma Petrie<noscript> · {EMAIL.replace("@"," [at] ").replace("."," [dot] ")}</noscript></span><nav aria-label="Footer"><a href="https://www.linkedin.com/in/gemmapetrie/">LinkedIn</a><a href="mailto:{EMAIL}">Email</a></nav></div></footer>
+<footer class="site-footer"><div class="wrap"><span>© Gemma Petrie<noscript> · {EMAIL.replace("@"," [at] ").replace("."," [dot] ")}</noscript></span><nav aria-label="Footer"><a href="https://www.linkedin.com/in/gemmapetrie/">LinkedIn</a>{foot_contact}</nav></div></footer>
 <script>document.querySelectorAll("a[data-u]").forEach(function(a){{a.addEventListener("click",function(e){{e.preventDefault();location.href="mail"+"to:"+a.dataset.u+"@"+a.dataset.d;}});}});</script>
 </body>
 </html>
@@ -201,6 +207,35 @@ write('index.html', page('', f'''
   <p>I lead competition and regulation research for <a class="m" href="https://research.mozilla.org/browser-competition/">Mozilla</a>. Previously, I led the <a class="m" href="https://www.firefox.com/">Firefox</a> User Research Team.</p>
 </section>
 {selected_html}''', extra_class='home'))
+
+# contact (only when a form endpoint is configured)
+if CONTACT_ENDPOINT:
+    write('contact.html', page('Contact', f'''<section class="prose contact">
+  <h1>Contact</h1>
+  <p class="sub">Send a message and it goes to my email.</p>
+  <form id="cform" action="{esc(CONTACT_ENDPOINT)}" method="POST" class="cform">
+    <label>Name<input name="name" type="text" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Message<textarea name="message" rows="7" required></textarea></label>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+    <button type="submit">Send</button>
+    <p id="cstatus" role="status" aria-live="polite"></p>
+  </form>
+  <noscript><p>JavaScript is needed to send from this page. You can also email {EMAIL.replace("@", " [at] ").replace(".", " [dot] ")}.</p></noscript>
+</section>
+<script>
+document.getElementById("cform").addEventListener("submit", function (e) {{
+  e.preventDefault();
+  var f = e.target, s = document.getElementById("cstatus"), b = f.querySelector("button");
+  b.disabled = true; s.textContent = "Sending…";
+  fetch(f.action, {{ method: "POST", body: new FormData(f), headers: {{ Accept: "application/json" }} }})
+    .then(function (r) {{ if (!r.ok) throw 0; f.reset(); s.textContent = "Thanks. Your message was sent."; }})
+    .catch(function () {{ s.textContent = "Something went wrong. Please try again."; }})
+    .then(function () {{ b.disabled = false; }});
+}});
+</script>''', current='contact', desc='Contact Gemma Petrie'))
+elif os.path.exists(os.path.join(ROOT, 'contact.html')):
+    os.remove(os.path.join(ROOT, 'contact.html'))
 
 # about
 write('about.html', page('About', f'''
