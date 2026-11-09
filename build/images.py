@@ -14,6 +14,10 @@ _wayback_lock = threading.Lock()
 
 ALT_FLICKR = {}  # normalized image url -> Flickr photo id, taken from the img alt text (e.g. alt="6254757801_ae6f4be75f")
 _flickr_index = None
+_m = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'flickr_matches.json')
+if os.path.exists(_m):   # Wayback/Typepad photos matched to a Flickr original by image similarity
+    import json as _json
+    ALT_FLICKR.update(_json.load(open(_m)))
 def flickr_index():
     global _flickr_index
     if _flickr_index is None:

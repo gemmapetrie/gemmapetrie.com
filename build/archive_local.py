@@ -12,9 +12,10 @@ from wpparse import load_entries, plain
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.environ.get('ARCHIVE_OUT', os.path.join(os.path.dirname(ROOT), 'gemmapetrie-archive'))
-store = ImageStore(os.path.join(ROOT, 'build', 'cache_archive'))
+store = ImageStore(os.path.join(ROOT, 'build', 'cache_archive'), flickr_size=1600, flickr_quality=84)
 entries = load_entries(lambda src: '@IMG:' + store.register(src))
 print(len(entries), 'entries,', sum(len(e['comments']) for e in entries), 'comments')
+print('upgraded from Flickr originals:', store.refresh_flickr())
 print(f'fetching {len(store.wanted)} images (cached ones are skipped)…')
 failed = store.fetch_all(); print('images failed:', len(failed))
 
