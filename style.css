@@ -291,17 +291,20 @@ main:focus { outline: none; }
 .sw-head{padding-top:var(--pad)}
 .home main{padding-bottom:0}
 
-/* contact form */
-.contact{max-width:34rem}
-.cform{display:grid;gap:1.25rem;margin-top:1.75rem}
-.cform label{display:grid;gap:.4rem;font-weight:500}
-.cform input,.cform textarea{font:inherit;font-weight:400;padding:.7rem .8rem;border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:0;width:100%}
-.cform input:focus,.cform textarea:focus{outline:2px solid var(--grape);outline-offset:2px}
+/* contact form: soft filled fields */
+.contact{max-width:42rem}
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.75rem}
+.cform label{display:grid;gap:.4rem;font-weight:700;font-size:.9rem}
+.cform label:nth-of-type(3){grid-column:1/-1}
+.cform input,.cform textarea{font:inherit;font-weight:400;font-size:1.05rem;width:100%;padding:.9rem 1rem;border:0;border-bottom:3px solid transparent;border-radius:0;background:#f1f0f6;color:var(--ink);transition:border-color .2s,background .2s}
+.cform input:focus,.cform textarea:focus{outline:0;border-bottom-color:var(--grape);background:#ebe8f7}
 .cform textarea{resize:vertical;min-height:9rem}
-.cform button{justify-self:start;font:inherit;font-weight:700;border:2px solid var(--ink);border-radius:99px;padding:.5rem 1.6rem;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.cform button:hover{background:var(--grape);border-color:var(--grape);color:#fff}
+.cform button,.cform #cstatus{grid-column:1/-1}
+.cform button{justify-self:start;font:inherit;font-weight:700;border:0;border-radius:99px;padding:.8rem 2rem;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s}
+.cform button:hover{background:var(--grape)}
 .cform button:disabled{opacity:.6;cursor:default}
 #cstatus{margin:0;color:var(--muted);min-height:1.5em}
+@media(max-width:560px){.cform{grid-template-columns:1fr}.cform label:nth-of-type(3){grid-column:auto}}
 
 /* LINKS: two styles.
    Navigation links: ink, no underline; hover and current page = purple + squiggle.
