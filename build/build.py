@@ -22,6 +22,7 @@ EMAIL = 'gemmapetrie@gmail.com'
 # Without it, Contact falls back to a mailto link and no contact page is built.
 _ep = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'contact_endpoint.txt')
 CONTACT_ENDPOINT = open(_ep).read().strip() if os.path.exists(_ep) else ''
+CONTACT_HREF = lambda root='': (root + 'contact.html') if CONTACT_ENDPOINT else f'mailto:{EMAIL}'
 PROFILE_IMG = 'https://images.squarespace-cdn.com/content/v1/5fe0fbec379c5c56f0c80371/1608588010818-VII993KJN9B3AQH5UFS0/L1090151.JPG'
 ABOUT_IMG = 'https://images.squarespace-cdn.com/content/v1/5fe0fbec379c5c56f0c80371/1608587013933-BV1YQM5HI74UJXC5TU2C/2019-04-03+23.40.56-1.jpg'
 
@@ -245,7 +246,7 @@ write('about.html', page('About', f'''
   <p>As Principal Researcher at <a href="https://research.mozilla.org/browser-competition/">Mozilla</a>, I lead research at the intersection of competition, regulation, and technology—investigating how digital interfaces shape user behavior and how well-designed regulatory remedies can promote real choice and meaningful competition in tech markets. Over the past four years, I’ve led Mozilla’s <a href="https://research.mozilla.org/browser-competition/">research portfolio</a> on browser choice and defaults, directly informing global regulatory initiatives such as the EU’s Digital Markets Act (DMA).</p>
   <p>With over 15 years of experience in user research, my expertise includes managing mixed-method teams, defining organizational standards and processes for high-quality research, fostering a culture of cross-functional collaboration, and scaling the impact of research in fast-paced, distributed organizations. I previously led the <a href="https://www.firefox.com/">Firefox</a> User Research Team, where I helped shape research strategy for one of the world’s most widely used browsers.</p>
   <p>I care deeply about understanding the complex interplay between people, technology, and context—and using research to shape more open, user-centered digital experiences. I hold a BA in Philosophy from <a href="https://www.reed.edu/">Reed College</a> and an MLIS from the <a href="https://ischool.illinois.edu/">University of Illinois at Urbana-Champaign</a>. I’ve been recognized as one of Chicago’s Tech 50 by <em>Crain’s</em> and as a Person of the Year by the <em>Chicago Reader</em> for my contributions to the UX community.</p>
-  <p>Interested in working together? Please <a href="mailto:{EMAIL}">get in touch</a>.</p>
+  <p>Interested in working together? Please <a href="{CONTACT_HREF()}">get in touch</a>.</p>
 </article>
 <div class="wr"><div class="ph"><img src="@ROOT@images/portrait.jpg" alt="Gemma Petrie" width="1000" height="1000"></div></div></div>''', current='about', desc='About Gemma Petrie'))
 
@@ -256,7 +257,7 @@ def entries_page(slug, title, intro, link_event=False):
         parts = str(d).split('-')
         return (datetime.date(int(parts[0]), int(parts[1]), 1).strftime('%B %Y')) if len(parts) > 1 else parts[0]
     if not items:
-        inner = f'<p class="sub">Coming soon. In the meantime, see <a href="writing/index.html">Writing</a> or <a href="mailto:{EMAIL}">get in touch</a>.</p>'
+        inner = f'<p class="sub">Coming soon. In the meantime, see <a href="writing/index.html">Writing</a> or <a href="{CONTACT_HREF()}">get in touch</a>.</p>'
     else:
         inner = ''
         groups = {}
