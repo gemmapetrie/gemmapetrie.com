@@ -5,7 +5,7 @@
 Writes a plain static folder OUTSIDE this repo (default ../gemmapetrie-archive). Open its index.html
 in a browser. It is not part of the published site and has no password.
 """
-import html, os, re, shutil, sys
+import html, os, re, shutil, subprocess, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from images import ImageStore
 from wpparse import load_entries, plain
@@ -57,6 +57,18 @@ for e in entries:
 # index: grouped by year, with a category row
 cats = sorted({c for e in entries for c in e['cats']})
 chips = ''.join(f'<a href="#" data-cat="{esc(c)}">{esc(c)}</a>' for c in cats)
+os.makedirs(os.path.join(OUT, 'thumbs'), exist_ok=True)
+def thumb_for(e):
+    # first photo in the post that actually exists, as a small thumbnail
+    for n in re.findall(r'@IMG:([0-9a-f]+\.jpg)', e['html']):
+        src = os.path.join(store.dir, n)
+        if n in failed or not os.path.exists(src): continue
+        dest = os.path.join(OUT, 'thumbs', n)
+        if not os.path.exists(dest):
+            subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', '70', '-Z', '360', src, '--out', dest], capture_output=True)
+        return f'<img class="thumb" src="thumbs/{n}" alt="" loading="lazy">'
+    return '<span class="thumb"></span>'
+
 rows, year = '', None
 for e in entries:
     y = e['date'][:4]
@@ -65,7 +77,7 @@ for e in entries:
     ex = re.sub(r'\s+', ' ', plain(re.sub(r'<img[^>]*>', '', e['html'])))
     ex = (ex[:150].rsplit(' ', 1)[0] + '…') if len(ex) > 150 else ex
     rows += (f'<li data-cats="{esc("|".join(e["cats"]))}" data-q="{esc((e["title"] + " " + ex).lower())}"><a href="posts/{e["slug"]}.html">'
-             f'<span class="txt"><span class="t">{esc(e["title"])}</span><span class="ex">{esc(ex)}</span></span><time>{e["date"][5:]}</time></a></li>')
+             f'{thumb_for(e)}<span class="txt"><span class="t">{esc(e["title"])}</span><span class="ex">{esc(ex)}</span></span><time>{e["date"][5:]}</time></a></li>')
 rows += '</ul>'
 script = '''<script>
 const q=document.getElementById('q'),sel=document.getElementById('cat');
