@@ -179,7 +179,7 @@ _pubs = json.load(open(os.path.join(ROOT, 'build', 'publications.json')))
 _url = lambda prefix: next(x['url'] for x in _pubs if x['title'].startswith(prefix))
 SELECTED = [
     ('Active Choice Interventions', '2026 · NBER Working Paper', 'Active Choice Interventions at Scale',
-     'After the DMA choice-screen mandate, Firefox daily active users rose 91% on iOS and 13% on Android relative to a no-mandate counterfactual.'),
+     'Browser choice screens required by the DMA increased Firefox daily active users by 91% on iOS and 13% on Android, evidence that regulation can help independent browsers compete.'),
     ('Designing Better Digital Competition Remedies', '2025 · Mozilla', 'Designing Better Digital Competition Remedies',
      'Case studies from Mozilla’s competition research on how concept testing, usability testing, and behavioral experiments can strengthen the design of regulatory remedies.'),
     ('Can Browser Choice Screens Be Effective', '2023 · Mozilla', 'Can Browser Choice Screens Be Effective?',
