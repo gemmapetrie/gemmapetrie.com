@@ -105,6 +105,8 @@ NAV = [('publications', 'publications.html', 'Publications'), ('speaking', 'spea
        ('writing', 'writing/index.html', 'Writing'), ('recipes', 'recipes/index.html', 'Recipes'),
        ('about', 'about.html', 'About')]
 
+CSS_V = hashlib.sha1(open(os.path.join(ROOT, 'style.css'), 'rb').read()).hexdigest()[:8]  # cache-bust so style changes show right away
+
 def page(title, body, root='', current='', desc='', extra_class=''):
     cur = ' aria-current="page"'
     nav = ''.join(f'<a href="{root}{href}"{cur if key == current else ""}>{label}</a>' for key, href, label in NAV)
@@ -122,7 +124,7 @@ def page(title, body, root='', current='', desc='', extra_class=''):
 <link rel="icon" type="image/svg+xml" href="{root}images/favicon.svg"><link rel="icon" type="image/png" href="{root}images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{root}style.css">
+<link rel="stylesheet" href="{root}style.css?v={CSS_V}">
 </head>
 <body class="{extra_class}">
 <a class="skip" href="#content">Skip to content</a>
