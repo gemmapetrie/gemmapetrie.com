@@ -193,7 +193,7 @@ SELECTED = [
     ('Who Gets to Define Success', '2020 · Ethnographic Praxis in Industry', 'Who Gets to Define Success?',
      'Diary studies, interviews, and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
 ]
-selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">All publications →</a></div><div class="sw-grid">'
+selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">Publications →</a></div><div class="sw-grid">'
     + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><span class="sw-meta">{m}</span><h3>{t}</h3><p>{d}</p></a>' for k, m, t, d in SELECTED)
     + '</div></section>')
 
