@@ -273,7 +273,8 @@ main:focus { outline: none; }
 .sw{margin:0}
 .sw-head{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);margin-bottom:1.75rem}
 .sw-head h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;margin:0}
-.sw-head a{font-size:.95rem;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--grape)}
+.sw-head a{font-weight:500;color:var(--ink);text-decoration:none}
+.sw-head a:hover{color:var(--grape)}
 .sw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.25rem 3rem}
 .sw-card{display:block;text-decoration:none;color:var(--ink)}
 .sw-meta{font-size:.82rem;color:var(--muted);letter-spacing:.02em}

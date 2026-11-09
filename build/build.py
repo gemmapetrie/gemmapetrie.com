@@ -104,6 +104,7 @@ NAV = [('publications', 'publications.html', 'Publications'), ('speaking', 'spea
 def page(title, body, root='', current='', desc='', extra_class=''):
     cur = ' aria-current="page"'
     nav = ''.join(f'<a href="{root}{href}"{cur if key == current else ""}>{label}</a>' for key, href, label in NAV)
+    nav += f'<a href="mailto:{EMAIL}">Contact</a>'
     full_title = SITE if not title else f'{title} · {SITE}'
     out = f'''<!doctype html>
 <html lang="en">
@@ -122,7 +123,6 @@ def page(title, body, root='', current='', desc='', extra_class=''):
 <header class="wrap top">
   <a class="brand" href="{root}index.html">Gemma Petrie</a>
   <nav aria-label="Main">{nav}</nav>
-  <a class="cta" href="mailto:{EMAIL}">Get in touch</a>
 </header>
 <main id="content" class="wrap" tabindex="-1">
 {body}
@@ -187,7 +187,7 @@ SELECTED = [
     ('Who Gets to Define Success', '2020 · Ethnographic Praxis in Industry', 'Who Gets to Define Success?',
      'Diary studies, interviews, and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
 ]
-selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">All publications</a></div><div class="sw-grid">'
+selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">All publications →</a></div><div class="sw-grid">'
     + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><span class="sw-meta">{m}</span><h3>{t}</h3><p>{d}</p></a>' for k, m, t, d in SELECTED)
     + '</div></section>')
 
