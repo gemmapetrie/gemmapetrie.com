@@ -187,17 +187,21 @@ def fmt(d): return d.strftime('%B %-d, %Y')
 _pubs = json.load(open(os.path.join(ROOT, 'build', 'publications.json')))
 _url = lambda prefix: next(x['url'] for x in _pubs if x['title'].startswith(prefix))
 SELECTED = [
-    ('Active Choice Interventions', '2026 · NBER Working Paper', 'Active Choice Interventions at Scale',
+    ('UK CMA', 'UK CMA and Consumer Choice',
+     'The UK CMA has proposed Google search choice screens but has not yet consulted on browser choice screens. Mozilla calls on the CMA to test and launch the two together. Doing so would avoid delaying browser choice and would reduce user confusion between browsers and search that research has documented.'),
+    ('Active Choice Interventions', 'Active Choice Interventions at Scale',
      'Browser choice screens required by the DMA increased Firefox daily active users by 91% on iOS and 13% on Android, evidence that regulation can help independent browsers compete.'),
-    ('Designing Better Digital Competition Remedies', '2025 · Mozilla', 'Designing Better Digital Competition Remedies',
+    ('Designing Better Digital Competition Remedies', 'Designing Better Digital Competition Remedies',
      'Case studies from Mozilla’s competition research on how concept testing, usability testing, and behavioral experiments can strengthen the design of regulatory remedies.'),
-    ('Can Browser Choice Screens Be Effective', '2023 · Mozilla', 'Can Browser Choice Screens Be Effective?',
-     'A 12,000-person experiment in Germany, Spain, and Poland showing that a choice screen’s design, content, and timing shape its effectiveness.'),
-    ('Who Gets to Define Success', '2020 · Ethnographic Praxis in Industry', 'Who Gets to Define Success?',
-     'Diary studies, interviews, and workshops with 61 people in six cities show what usage metrics leave out: a low-usage product like Firefox Focus can still play a distinct role in how people browse.'),
+    ('Can Browser Choice Screens Be Effective', 'Can Browser Choice Screens Be Effective?',
+     'A 12,000-person experiment in Germany, Spain, and Poland found that browser choice screens can be an effective intervention for challenging pre-set defaults, but their design, content, and timing are critical to how well they work.'),
+    ('Who Gets to Define Success', 'Who Gets to Define Success?',
+     'Diary studies, interviews, and workshops with 61 people in six cities found that people value Firefox Focus as a companion to another browser, for specific tasks like sensitive searches and quick one-off lookups. The findings influenced how Mozilla defines success for products like Focus, beyond the size of their user base.'),
+    ('In Praise of Theory', 'In Praise of Theory in Design Research',
+     'In a six-country browser study, people saved and organized things with familiar tools like email, screenshots, and open tabs, not purpose-built apps, and these solutions worked well for them. Lévi-Strauss’s concept of bricolage challenges the idea that people want custom-built tools or engineered workflows.'),
 ]
 selected_html = ('<section class="sw"><div class="sw-head"><h2>Selected work</h2><a href="publications.html">Publications →</a></div><div class="sw-grid">'
-    + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><span class="sw-meta">{m}</span><h3>{t}</h3><p>{d}</p></a>' for k, m, t, d in SELECTED)
+    + ''.join(f'<a class="sw-card" href="{esc(_url(k))}"><h3>{t}</h3><p>{d}</p></a>' for k, t, d in SELECTED)
     + '</div></section>')
 
 write('index.html', page('', f'''
