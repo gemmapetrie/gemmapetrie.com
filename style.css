@@ -332,3 +332,4 @@ main:focus { outline: none; }
   .prose.wide .list .row{display:flex;flex-direction:column;gap:.15rem}
   .prose.wide .list time{display:block;order:2;padding-top:0}
 }
+.list .ex .evt{color:var(--ink)}

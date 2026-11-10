@@ -269,6 +269,7 @@ def entries_page(slug, title, intro, link_event=False):
                 if it.get('url'):
                     if link_event and pub: pub = f'<a href="{esc(it["url"])}">{pub}</a>'
                     else: t = f'<a href="{esc(it["url"])}">{t}</a>'
+                elif link_event and pub: pub = f'<span class="evt">{pub}</span>'
                 inner += (f'<li><div class="row"><span class="txt"><span class="t">{t}</span>'
                           + (f'<span class="ex">{pub}' + (f'<span class="org">{esc(it["organizer"])}</span>' if it.get('organizer') else '') + '</span>' if pub else '') + '</span>'
                           + f'<time>{when(it["date"])}</time></div></li>')
