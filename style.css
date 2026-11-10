@@ -323,3 +323,12 @@ main:focus { outline: none; }
 .sw-head a:hover,.back a:hover,.list .ex a:hover{color:var(--grape)}
 .post .back a{color:var(--ink)}
 .post .back a:hover{color:var(--grape)}
+
+/* Publications and Speaking: narrower column, dates on the left */
+.prose.wide,.wide>h1{max-width:52rem}
+.prose.wide .list .row{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem}
+.prose.wide .list time{order:-1;padding-top:.45rem;font-size:.85rem}
+@media(max-width:800px){
+  .prose.wide .list .row{display:flex;flex-direction:column;gap:.15rem}
+  .prose.wide .list time{display:block;order:2;padding-top:0}
+}
