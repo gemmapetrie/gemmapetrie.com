@@ -334,4 +334,3 @@ main:focus { outline: none; }
 }
 .list .ex .evt{color:var(--ink)}
 .sw-card h3{margin-top:0}
-@media(min-width:1000px){.sw-grid{grid-template-columns:repeat(3,1fr);gap:2.5rem 2.5rem}}
