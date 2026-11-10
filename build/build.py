@@ -210,7 +210,7 @@ write('index.html', page('', f'''
   <div class="wr"><div class="ph"><img src="@ROOT@images/portrait.jpg" alt="Gemma Petrie" width="1000" height="1000"></div></div>
 </section>
 <section class="bio">
-  <p>I’m Gemma Petrie (she/her), a Principal Researcher in Chicago, exploring the intersection of people, society, and technology. My work focuses on how technology and design affect people’s lives, and on conducting research to inform product, policy, and regulation.</p>
+  <p>I’m Gemma Petrie (she/her), a Principal Researcher in Chicago, exploring the intersection of people, society, and technology. My work focuses on understanding how technology and design impact people’s lives and how research can inform policy and regulation.</p>
   <p>I lead competition and regulation research for <a class="m" href="https://research.mozilla.org/browser-competition/">Mozilla</a>. Previously, I led the <a class="m" href="https://www.firefox.com/">Firefox</a> User Research Team.</p>
 </section>
 {selected_html}''', extra_class='home'))
